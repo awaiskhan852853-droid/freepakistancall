@@ -1,0 +1,4 @@
+-keep class org.webrtc.** { *; }
+-keep class tvi.webrtc.** { *; }
+-keep class com.twilio.** { *; }
+-dontwarn org.webrtc.**

@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.Fpc" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#0B7A3E</item>
+        <item name="android:windowBackground">#FFFFFF</item>
+    </style>
+</resources>

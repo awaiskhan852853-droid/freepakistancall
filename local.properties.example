@@ -1,0 +1,8 @@
+# Copy to local.properties (never commit it). Secrets/URLs live here, not in source code.
+sdk.dir=/path/to/Android/Sdk
+DEBUG_SERVER_URL=http://10.0.2.2:3000
+RELEASE_SERVER_URL=https://YOUR-BACKEND-DOMAIN
+KEYSTORE_PATH=/absolute/path/to/release.keystore
+KEYSTORE_PASSWORD=
+KEY_ALIAS=
+KEY_PASSWORD=
