@@ -80,6 +80,14 @@ fun AppRoot(vm: AppVM) {
 @Composable
 fun LoginScreen(vm: AppVM, onSent: () -> Unit, onLang: () -> Unit) {
     var phone by remember { mutableStateOf("") }
+    var showServer by remember { mutableStateOf(false) }
+    var serverText by remember { mutableStateOf(Prefs.serverUrl) }
+    if (showServer) AlertDialog(onDismissRequest = { showServer = false },
+        title = { Text(S.t("server")) },
+        text = { OutlinedTextField(serverText, { serverText = it }, singleLine = true, placeholder = { Text("https://...") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri)) },
+        confirmButton = { TextButton({ Prefs.serverUrl = serverText; vm.error = null; showServer = false }) { Text(S.t("save")) } },
+        dismissButton = { TextButton({ showServer = false }) { Text(S.t("cancel")) } })
     Column(Modifier.fillMaxSize().padding(24.dp).statusBarsPadding(), verticalArrangement = Arrangement.Center) {
         Box(Modifier.size(72.dp).clip(CircleShape).background(Green), Alignment.Center) { Icon(Icons.Filled.Call, null, tint = Color.White, modifier = Modifier.size(38.dp)) }
         Spacer(Modifier.height(20.dp))
@@ -93,6 +101,7 @@ fun LoginScreen(vm: AppVM, onSent: () -> Unit, onLang: () -> Unit) {
         Spacer(Modifier.height(16.dp))
         BigButton(S.t("send_code"), vm.busy) { vm.requestOtp(phone, onSent) }
         TextButton(onLang, Modifier.align(Alignment.CenterHorizontally)) { Icon(Icons.Filled.Language, null); Spacer(Modifier.width(6.dp)); Text("اردو / English") }
+        TextButton({ serverText = Prefs.serverUrl; showServer = true }, Modifier.align(Alignment.CenterHorizontally)) { Icon(Icons.Filled.Settings, null); Spacer(Modifier.width(6.dp)); Text(S.t("server")) }
         Text(S.t("privacy"), fontSize = 12.sp, color = Color.Gray, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
     }
 }

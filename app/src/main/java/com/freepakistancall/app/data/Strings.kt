@@ -10,6 +10,7 @@ object S {
     private val m = mapOf(
         "app_name" to ("فری پاکستان کال" to "Free Pakistan Call"),
         "tagline" to ("پاکستان بھر میں آسان کالنگ" to "Simple calling across Pakistan"),
+        "server" to ("سرور کا ایڈریس" to "Server address"),
         "phone" to ("موبائل نمبر" to "Mobile number"),
         "send_code" to ("کوڈ بھیجیں" to "Send code"),
         "otp_title" to ("تصدیقی کوڈ" to "Verification code"),

@@ -1,6 +1,5 @@
 package com.freepakistancall.app.data
 
-import com.freepakistancall.app.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
@@ -25,7 +24,7 @@ object Api {
                 method == "GET" || method == "DELETE" -> null
                 else -> "{}".toRequestBody("application/json".toMediaType())
             }
-            val b = Request.Builder().url(BuildConfig.SERVER_URL + path).method(method, rb)
+            val b = Request.Builder().url(Prefs.serverUrl + path).method(method, rb)
             Prefs.token?.let { b.header("Authorization", "Bearer $it") }
             try {
                 client.newCall(b.build()).execute().use { r ->

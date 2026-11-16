@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.freepakistancall.app.BuildConfig
 
 /** Encrypted storage (AES-256) for the auth token and profile. */
 object Prefs {
@@ -29,6 +30,10 @@ object Prefs {
     var lang: String
         get() = sp.getString("lang", "ur") ?: "ur"   // Urdu is the default
         set(v) { sp.edit().putString("lang", v).apply() }
+    /** Server address; defaults to the build-time URL but can be changed on the login screen. */
+    var serverUrl: String
+        get() = sp.getString("server", null) ?: BuildConfig.SERVER_URL
+        set(v) { sp.edit().putString("server", v.trim().trimEnd('/')).apply() }
     var fcm: String?
         get() = sp.getString("fcm", null)
         set(v) { sp.edit().putString("fcm", v).apply() }

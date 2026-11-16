@@ -1,0 +1,17 @@
+# One-click hosting on Render.com (Blueprint). Free plan: sleeps when idle, data resets on redeploy.
+services:
+  - type: web
+    name: free-pakistan-call
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: development   # OTP codes appear in Render > Logs. Switch to production + Twilio before public launch.
